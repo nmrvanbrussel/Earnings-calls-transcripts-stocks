@@ -1,0 +1,112 @@
+# 🔍 Strategic Signaling in the Semiconductor Industry
+
+**A game theory + NLP-based predictive analytics project to model strategic interactions among leading chip manufacturers.**
+
+---
+
+## ❓ Research Question
+Can public communications by semiconductor firms be used to predict strategic investment decisions?
+
+## 📘 Project Overview
+
+This project explores how major semiconductor firms (e.g., Intel, NVIDIA, TSMC) use public communications to signal strategic intent — such as R&D investment, capacity expansion, or market entry. By combining **Natural Language Processing (NLP)**, **game theory**, and **machine learning**, we aim to predict firm-level decisions based on sentiment and strategic signaling.
+
+---
+
+## 🎯 Objectives
+
+- Extract sentiment and topics from earnings call transcripts and press releases
+- Model firm behavior using strategic game theory (signaling & commitment games)
+- Predict outcomes such as:
+  - New fab construction
+  - R&D budget increases
+  - AI chip market entry
+- Present results in a business-strategy context for consulting-style insights
+
+---
+
+## 🧠 Methodology
+
+### 1. Data Collection
+- Company transcripts from **SeekingAlpha**, **Yahoo Finance**, and **IR websites**
+- Financial data from **10-K filings** and **Macrotrends**
+- Events: CHIPS Act news, AI chip releases, export bans
+
+### 2. NLP Pipeline
+- Sentiment analysis using `FinBERT`, `VADER`, and Hugging Face models
+- Topic modeling with `BERTopic` and `LDA`
+- Embedding generation via `SBERT` for clustering and similarity analysis
+
+### 3. Game Theoretic Modeling
+- **Signaling games**: Does public sentiment indicate real investment?
+- **Stackelberg/R&D competition**: Leader-follower dynamics in capacity or innovation races
+- **Deterrence/Commitment**: Credibility of strategic moves
+
+### 4. Machine Learning
+- Train an `XGBoost` model to classify future firm actions
+- Features include sentiment scores, topic distributions, financial ratios
+- Use `SHAP` for model interpretability
+
+---
+
+## 📊 Outputs
+
+- Probabilistic predictions of firm decisions (e.g., "Intel 85% likely to expand fab in Q2")
+- Visualizations of sentiment shifts before and after key announcements
+- Game-theoretic simulations (e.g., payoff matrices and reaction strategies)
+- A consulting-style recommendation slide deck (optional)
+
+---
+
+## 🧰 Tech Stack
+
+| Tool | Purpose |
+|------|---------|
+| Python | Core language |
+| HuggingFace Transformers | NLP models (FinBERT, SBERT) |
+| VADER, NLTK, spaCy | Sentiment & tokenization |
+| XGBoost | Predictive modeling |
+| SHAP | Feature importance |
+| Google Colab | Free computing |
+| Pandas, Matplotlib | Analysis and plotting |
+| GitHub | Version control and portfolio hosting |
+
+---
+
+## 🆓 Cost-Optimized Setup
+
+This project uses **100% free tools**:
+- Public transcripts and filings
+- Open-source NLP and ML libraries
+- Google Colab for compute
+- No paid APIs required
+
+---
+
+## 🔮 Roadmap
+
+- [ ] Collect and process transcripts from 1 firm (e.g., NVIDIA)
+- [ ] Perform sentiment and topic analysis
+- [ ] Model signaling behavior using game theory
+- [ ] Train and evaluate prediction model
+- [ ] Package into slides or a dashboard (Streamlit optional)
+
+---
+
+## 👤 Author
+
+**[Your Name]** – Economics & Business Economics student interested in strategy, AI, and competitive dynamics.
+
+---
+
+## 📬 Contact
+
+📧 [Your Email]  
+🌐 [LinkedIn Profile]  
+🐙 [GitHub Profile]
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.

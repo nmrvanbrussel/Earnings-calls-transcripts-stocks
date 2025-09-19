@@ -1,0 +1,45 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual envs
+venv/
+.env/
+.venv/
+ENV/
+
+# IDE/editor
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local data
+*.sqlite3
+*.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Cache
+.cache/
+.mypy_cache/
+.pytest_cache/
+
+# Credentials
+*.env
+.env.local
+
