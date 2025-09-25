@@ -95,3 +95,19 @@ def finbert_embedding(text, pool = "cls"):
 
     chunks = chunk_encode(text)
     vecs = []
+
+    for ch in chunks:
+        ch = {k: v.to(DEVICE) for k, v in ch.items()}
+        out = base(**ch, output_hidden_states = False)
+        last_hidden = out.last_hidden_state #This gives a new shape: [1, T, 768]
+
+        if pool == "cls":
+            # Take the [CLS] token representation: position 0
+            v = last_hidden[:, 0, :] # [1, 768]
+
+        #Mean pooling while being mask-aware
+        else:
+            mask = ch["attention_mask"].unsqueeze[-1] # [1, T, 1]
+            summed = (last_hidden * mask).sum(dim = 1) # [1, 768]
+            counts = mask.sum(dim = 1).clamp(min = 1e - 9) # [1, 1]
+            v = summed / counts                         # [1, 768]
