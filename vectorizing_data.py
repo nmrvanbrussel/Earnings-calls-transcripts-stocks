@@ -16,7 +16,7 @@ STRIDE = 32 #Lets see what optimizes?
 
 df = pd.read_csv(CSV_PATH)
 
-texts = df[TEXT_COL].astyoe(str).tolist()
+texts = df[TEXT_COL].astype(str).tolist()
 
 tok = AutoTokenizer.from_pretrained(MODEL_ID)
 
@@ -56,4 +56,42 @@ def chunk_encode(text, max_length = MAX_LEN, stride = STRIDE):
             "input_ids": ids_slice.unsqueeze(0),
             "attention_mask": am_slice.unsqueeze(0)
         })
-        
+
+        if end == len(input_ids):
+            break 
+
+        #This part moves the window forward overlapping by 'stride'
+        start = end - stride
+        if start < 0:
+            start = 0
+
+    return chunks
+
+def finbert_probs(text):
+    chunks = chunk_encode(text)
+
+    all_logits = []
+    for ch in chunks:
+        ch = {k: v.to(DEVICE) for k, v in ch.items()} #THis code is copied but moves the tensors from GPU/CPOU
+        out = clf(**ch)
+        all_logits.append(out.logits)
+
+    #Stacking into [num_chunks, 3] and average across chunks
+    logits = torch.cat(all_logits, dim = 0).mean(dim = 0)
+    probs = torch.softmax(logits, dim = -1),cpu().numpy()
+
+    return probs 
+
+def finbert_embedding(text, pool = "cls"):
+    """
+    Compute a 768-d embedding for the text by:
+      - Running each chunk through the base BERT
+      - Pooling token representations per chunk (CLS or mean)
+      - Averaging chunk vectors to a single vector
+
+    pool = "cls"  -> use the [CLS] token (position 0) from last hidden layer
+    pool = "mean" -> attention-mask-weighted mean over all tokens
+    """
+
+    chunks = chunk_encode(text)
+    vecs = []
