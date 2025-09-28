@@ -1,5 +1,3 @@
-!pip -q install transformers torch tqdm pandas pyarrow
-
 # Arrays & math
 import numpy as np
 
@@ -41,7 +39,7 @@ tok  = AutoTokenizer.from_pretrained(MODEL_ID)
 # This loads the FinBERT Tokenizer:
 # 1. Splits raw text into subword tokens (BERT uses WordPiece, e.g. expectations → expect + ##ations)
 # 2. Maps tokens to integer IDs in FinBERT vocab
-# 3. Adds special tokens like CLS (start) and SEP (end) → [CLS], The, company, beat, expect, ##ations, [SEP]
+# 3. Adds special tokens like CLS (start) and SEP (end) -> [CLS], The, company, beat, expect, ##ations, [SEP]
 # Important: the tokenizer must match the model as they differ
 
 clf  = AutoModelForSequenceClassification.from_pretrained(MODEL_ID).to(DEVICE).eval()
