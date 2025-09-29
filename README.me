@@ -22,6 +22,7 @@ This project analyzes earnings call transcripts from major semiconductor compani
 - **768-dimensional embeddings** for semantic similarity analysis
 - **Sliding window processing** for handling long documents
 - **Sentiment probability scores** (positive, negative, neutral)
+ - **Visualization utilities** to explore class balance, confidence, and embedding structure
 
 ### Data Processing
 - **Automated text vectorization** using Hugging Face Transformers
@@ -84,12 +85,17 @@ AI_CHIP_STRATEGY/
 │   ├── amd_qna_turns.csv       # AMD Q&A conversations
 │   ├── nvidia_earnings_calls.csv
 │   └── run_*_amd_qna_turns.csv # Multiple data collection runs
+│   └── Sentiment_analysis_Data/
+│       └── AMD/
+│           └── finbert_embeddings_plus_probs.parquet
 ├── Scraping/                    # Data collection scripts
 │   ├── scraping_QNA.py
 │   ├── scrape_call_participants.py
 │   └── scraper_earnings_calls_transcripts.py
+├── Sentiment_analysis/
+│   ├── sentiment_data_visualizer.py     # Visualize FinBERT outputs
+│   └── figs/                            # Generated plots and example CSVs
 ├── vectorizing_data.py         # Main FinBERT processing
-├── finbert_embeddings_plus_probs.parquet  # Generated features
 └── venv/                       # Python virtual environment
 ```
 
@@ -100,7 +106,7 @@ AI_CHIP_STRATEGY/
 ### 1. Setup Environment
 ```bash
 # Install dependencies
-pip install transformers torch tqdm pandas pyarrow beautifulsoup4 playwright
+pip install transformers torch tqdm pandas pyarrow fastparquet beautifulsoup4 playwright seaborn matplotlib scikit-learn plotly
 
 # Activate virtual environment
 venv\Scripts\activate  # Windows
@@ -117,7 +123,25 @@ python Scraping/scrape_call_participants.py
 python vectorizing_data.py
 ```
 
-### 4. Analyze Results
+### 4. Visualize Sentiment Outputs
+You can visualize the generated FinBERT features (probabilities, embeddings, labels) using the visualizer.
+
+Default expected parquet location (current project layout):
+`Data/CSV/Sentiment_analysis_Data/AMD/finbert_embeddings_plus_probs.parquet`
+
+Run the visualizer:
+```bash
+python Sentiment_analysis/sentiment_data_visualizer.py "Data/CSV/Sentiment_analysis_Data/AMD/finbert_embeddings_plus_probs.parquet" "Sentiment_analysis/figs"
+```
+
+This produces under `Sentiment_analysis/figs`:
+- `label_distribution.png` — predicted label counts
+- `confidence_hist.png` — distribution of max class probability
+- `probability_kdes.png` — class probability density curves
+- `pca_scatter.png` — PCA of embeddings (color by label, size by confidence)
+- `top_negative_examples.csv`, `top_neutral_examples.csv`, `top_positive_examples.csv` — highest-confidence samples per class
+
+### 5. Analyze Results
 The script generates:
 - **Sentiment probabilities** for each text segment
 - **768-dimensional embeddings** for semantic analysis
@@ -151,6 +175,7 @@ The script generates:
 - **Multiple collection runs** for data validation
 - **Comprehensive metadata** including speaker roles and dates
 - **High-quality transcripts** from official earnings call sources
+ - **Derived features** saved in Parquet for reproducible visualization
 
 ---
 
