@@ -5,9 +5,9 @@ import time
 
 def script_call_participants():
     print(">>> Script start <<<", flush=True)
-    input_csv_path = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\nvidia_earnings_calls.csv'
-    output_csv_path = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\nvidia_call_participants.csv'
-    info_csv_path = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\nvidia_call_employees.csv'
+    input_csv_path = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\amd_earnings_calls.csv'
+    output_csv_path = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\amd_call_participants.csv'
+    info_csv_path = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\amd_call_employees.csv'
 
     with open(info_csv_path, newline = '', encoding = 'utf-8') as out_f:
         info_reader = csv.DictReader(out_f)

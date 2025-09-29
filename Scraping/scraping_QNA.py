@@ -5,9 +5,9 @@ from typing import Optional, Tuple, List, Set
 
 TRANSCRIPTS_CSV = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\amd_earnings_calls.csv'
 EMPLOYEES_CSV   = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\amd_call_employees.csv'
-PARTICIPANTS_CSV= r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\amd_call_participants_test.csv'
+PARTICIPANTS_CSV= r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\amd_call_participants.csv'
 OUTPUT_CSV      = r'C:\Users\nmrva\OneDrive\Desktop\AI_CHIP_STRATEGY\Data\CSV\amd_qna_turns.csv'
-COMPANY_NAME    = 'Advanced Micro Devices'  # change to NVIDIA when doing NVIDIA
+COMPANY_NAME    = 'Advanced Micro Devices'
 
 
 QNA_HEADER_PATTERNS = [

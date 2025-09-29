@@ -9,12 +9,12 @@ def scrape_all_transcripts():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)  # Set to True for headless mode
         page = browser.new_page()
-        page.goto('https://www.fool.com/quote/nasdaq/nvda/#quote-earnings-transcripts')
+        page.goto('https://www.fool.com/quote/nasdaq/amd/#quote-earnings-transcripts')
 
         # Keep clicking 'Load more' until it's gone
         while True:
             try:
-                load_more = page.locator('button', has_text='View More NVDA Earnings Transcripts')
+                load_more = page.locator('button', has_text='View More AMD Earnings Transcripts')
                 if load_more.is_visible():
                     load_more.click()
                     time.sleep(2)
