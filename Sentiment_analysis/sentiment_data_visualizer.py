@@ -10,7 +10,11 @@ from sklearn.decomposition import PCA
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, ".."))
 DEFAULT_INPUT_PATH = os.path.join(
-    PROJECT_ROOT, "sentiment_analysis_data", "finbert_embeddings_plus_probs.parquet"
+    PROJECT_ROOT,
+    "Data",
+    "CSV",
+    "Sentiment_analysis_Data",
+    "finbert_embeddings_plus_probs.parquet",
 )
 DEFAULT_OUTPUT_DIR = os.path.join(BASE_DIR, "figs")
 
