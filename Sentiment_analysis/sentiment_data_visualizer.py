@@ -7,8 +7,12 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 
 
-DEFAULT_INPUT_PATH = "finbert_embeddings_plus_probs.parquet"
-DEFAULT_OUTPUT_DIR = "figs"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, ".."))
+DEFAULT_INPUT_PATH = os.path.join(
+    PROJECT_ROOT, "sentiment_analysis_data", "finbert_embeddings_plus_probs.parquet"
+)
+DEFAULT_OUTPUT_DIR = os.path.join(BASE_DIR, "figs")
 
 
 def load_features(parquet_path: str) -> tuple[pd.DataFrame, list[str], list[str]]:
